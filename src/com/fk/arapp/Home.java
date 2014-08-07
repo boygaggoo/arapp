@@ -23,7 +23,7 @@ public class Home extends Activity implements View.OnClickListener{
 		catBtn.setOnClickListener(this);
 		catBtn = findViewById(R.id.cat_shades_button);
 		catBtn.setOnClickListener(this);
-		catBtn = findViewById(R.id.cat_shades_button);
+		catBtn = findViewById(R.id.cat_shoes_button);
 		catBtn.setOnClickListener(this);
 	}
 
