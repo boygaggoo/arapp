@@ -9,15 +9,27 @@
       android:id="@+id/viewfinder_view"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:src="@drawable/ic_launcher"/>
-    
+      android:src="@drawable/watches"/>
+<Button
+android:id="@+id/next"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="@string/next"
+android:layout_gravity="bottom"
+/>
+<Button
+android:id="@+id/previous"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="@string/previous"
+android:layout_gravity="bottom"
+/> 
 <Button
 android:id="@+id/add_to_cart"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="@string/add_to_cart_label"
 android:layout_gravity="bottom"
-android:layout_margin="10px"
 />
 <Button
 android:id="@+id/add_to_wishlist"
@@ -25,6 +37,5 @@ android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="@string/add_to_wishlist_label"
 android:layout_gravity="bottom"
-android:layout_margin="10px"
 />
 </LinearLayout>
