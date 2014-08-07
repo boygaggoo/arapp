@@ -4,5 +4,12 @@
     <string name="app_name">arapp</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+    <!-- app labels -->
+    <string name="arapp_title">ShopAR</string>
+	<!-- categories -->
+	<string name="cat_watches_label">Watches</string>
+	<string name="cat_shades_label">Shades</string>
+	<string name="cat_shoes_label">Shoes</string>
+	<!-- colors -->
+    <color name="background">#3500ffff</color>
 </resources>
