@@ -2,24 +2,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
+    android:background="@drawable/bg1"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="30dip"
-    android:background="@color/background"    
     tools:context="com.fk.arapp.Home" >
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:adjustViewBounds="true"
+        android:baselineAlignBottom="false"
+        android:src="@drawable/fk" />
+    
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dip"
+        android:fontFamily="android:fontFamily=&quot;sans-serif&quot; "
         android:text="@string/arapp_title"
-        android:textSize="25sp"/>
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
     
     <Button
         android:id="@+id/cat_watches_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-       	android:text="@string/cat_watches_label"/>
+       	android:text="@string/cat_watches_label"
+       	/>
     <Button
         android:id="@+id/cat_shades_button"
         android:layout_width="fill_parent"
