@@ -24,8 +24,17 @@
         </activity>
         <activity
             android:name=".Category"
-            android:label="@string/catalog_name">
+            android:label="@string/catalog_name" >
         </activity>
-    </application>
+        <activity
+            android:name=".Listing"
+            android:label="@string/listing_name" >
+        </activity>
+        </application>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
 </manifest>

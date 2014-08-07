@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ android:orientation="vertical"
+ android:layout_width="fill_parent"
+ android:layout_height="fill_parent"
+ android:gravity="center"
+ >
+ <ImageView
+      android:id="@+id/viewfinder_view"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/ic_launcher"/>
+    
+<Button
+android:id="@+id/add_to_cart"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="@string/add_to_cart_label"
+android:layout_gravity="bottom"
+android:layout_margin="10px"
+/>
+<Button
+android:id="@+id/add_to_wishlist"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="@string/add_to_wishlist_label"
+android:layout_gravity="bottom"
+android:layout_margin="10px"
+/>
+</LinearLayout>

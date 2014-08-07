@@ -3,6 +3,7 @@
 
     <string name="app_name">arapp</string>
     <string name="catalog_name">Catalog</string>
+    <string name="listing_name">Listing</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <!-- app labels -->

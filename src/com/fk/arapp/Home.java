@@ -65,7 +65,7 @@ public class Home extends Activity implements View.OnClickListener{
 
 
 	private void openCategory(String categoryName) {
-		Intent intent = new Intent(this, Category.class);
+		Intent intent = new Intent(this, Listing.class);
 		intent.putExtra(Category.CATEGORY_KEY, categoryName);
 		startActivity(intent);
 	}
