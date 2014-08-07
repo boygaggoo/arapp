@@ -2,10 +2,13 @@
 <resources>
 
     <string name="app_name">arapp</string>
+    <string name="catalog_name">Catalog</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <!-- app labels -->
     <string name="arapp_title">ShopAR</string>
+    <string name="add_to_cart_label">Add to Cart</string>
+    <string name="add_to_wishlist_label">Add to WishList</string>
 	<!-- categories -->
 	<string name="cat_watches_label">Watches</string>
 	<string name="cat_shades_label">Shades</string>
