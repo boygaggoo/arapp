@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.fk.arapp.RestClient.RequestMethod;
 
 import android.app.Activity;
@@ -79,7 +82,17 @@ public class Listing extends Activity implements SurfaceHolder.Callback {
 		}
 
 		String response = client.getResponse();
-
+		response = response.substring(1, response.length()-2);
+		String[] jo = response.split("},");
+		Log.d("camera", jo[0]);
+		
+		try {
+			JSONObject jsonObject = new JSONObject(jo[0]);
+			Log.d("camera", jsonObject.toString());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
