@@ -20,11 +20,15 @@ public class Home extends Activity implements View.OnClickListener{
 
     private void bindCategories() {
 		View catBtn = findViewById(R.id.cat_watches_button);
+		
 		catBtn.setOnClickListener(this);
 		catBtn = findViewById(R.id.cat_shades_button);
 		catBtn.setOnClickListener(this);
 		catBtn = findViewById(R.id.cat_shoes_button);
 		catBtn.setOnClickListener(this);
+		
+		View chkbtn = findViewById(R.id.chechout_btn);
+		chkbtn.setOnClickListener(this);
 	}
 
 
@@ -59,6 +63,10 @@ public class Home extends Activity implements View.OnClickListener{
 			break;
 		case R.id.cat_shoes_button:
 			openCategory(Category.CAT_SHOES);
+			break;
+		case R.id.chechout_btn:
+			Intent intent = new Intent(this,Checkout.class);
+			startActivity(intent);
 			break;
 		}
 	}

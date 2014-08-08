@@ -209,7 +209,6 @@ public class Listing extends Activity implements SurfaceHolder.Callback,
 
 	@Override
 	public void surfaceCreated(SurfaceHolder arg0) {
-<<<<<<< HEAD
 		//camera = Camera.open();
 		String cameraType = getIntent().getStringExtra(Category.CATEGORY_KEY);
 		if("front".equals(cameraTypeMapping.get(cameraType))){
@@ -217,10 +216,10 @@ public class Listing extends Activity implements SurfaceHolder.Callback,
 		} else {
 			openCamera(Camera.CameraInfo.CAMERA_FACING_BACK);
 		}
-=======
+
 		// TODO: open frontcam for shades and backcam for shoes and watches
-		camera = Camera.open();
->>>>>>> Temp changes
+		//camera = Camera.open();
+
 	}
 	
 	public void openCamera(int cameraType){
