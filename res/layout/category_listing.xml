@@ -28,9 +28,9 @@
         android:layout_height="wrap_content"
        	android:text="@string/add_to_cart_label"/>
     <Button
-        android:id="@+id/add_to_wishlist_button"
+        android:id="@+id/checkout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-       	android:text="@string/add_to_wishlist_label"/>
+       	android:text="@string/checkout"/>
 
 </LinearLayout>

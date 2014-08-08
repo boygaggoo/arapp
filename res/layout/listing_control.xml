@@ -47,11 +47,11 @@
             android:text="@string/add_to_cart_label" />
 
         <Button
-            android:id="@+id/add_to_wishlist"
+            android:id="@+id/checkout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="@string/add_to_wishlist_label" />
+            android:text="@string/checkout" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -35,7 +35,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.os.StrictMode;
 
-public class Listing extends Activity implements SurfaceHolder.Callback, View.OnClickListener {
+public class Listing extends Activity implements SurfaceHolder.Callback,
+		View.OnClickListener {
 
 	Camera camera;
 	SurfaceView surfaceView;
@@ -46,6 +47,7 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 	private JSONArray jsonArray;
 	private Integer currentProductIndex;
 	FkApp fkApp;
+
 	Map<String, String> cameraTypeMapping = new HashMap<String,String>();
 	
 	@SuppressWarnings("deprecation")
@@ -53,10 +55,10 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listing_main);
+
 		initializeCameraTypeMapping();
+
 		fkApp = (FkApp) getApplicationContext();
-		
-		
 
 		if (android.os.Build.VERSION.SDK_INT > 9) {
 			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -81,6 +83,7 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 		this.addContentView(viewControl, layoutParamsControl);
 		bindNavButtons();
 	}
+<<<<<<< HEAD
 	
 	private void initializeCameraTypeMapping() {
 		this.cameraTypeMapping.put(Category.CAT_WATCHES, "back");
@@ -88,6 +91,8 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 		this.cameraTypeMapping.put(Category.CAT_SHOES, "back");
 		this.cameraTypeMapping.put(Category.CAT_JEWELRY, "front");
 	}
+=======
+>>>>>>> Temp changes
 
 	private void bindNavButtons() {
 		View prevBtn = findViewById(R.id.previous);
@@ -96,9 +101,9 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 		nextBtn.setOnClickListener(this);
 		View addToCartBtn = findViewById(R.id.add_to_cart);
 		addToCartBtn.setOnClickListener(this);
+		View checkoutBtn = findViewById(R.id.checkout);
+		checkoutBtn.setOnClickListener(this);
 	}
-
-
 
 	@Override
 	protected void onResume() {
@@ -109,11 +114,10 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 		displayProduct();
 	}
 
-
-
 	private void displayProduct() {
-		if(jsonArray != null){
+		if (jsonArray != null) {
 			try {
+
 				String imageUrl = ((JSONObject)jsonArray.get(currentProductIndex)).getString("url");
 				ImageView imageView = (ImageView) findViewById(R.id.viewfinder_view);
 				imageView.setImageBitmap(getImage(imageUrl));
@@ -136,7 +140,8 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 		try {
 			RestClient client = new RestClient(
 					"http://sleepy-retreat-2061.herokuapp.com/products");
-			client.AddParam("category", getIntent().getStringExtra(Category.CATEGORY_KEY));
+			client.AddParam("category",
+					getIntent().getStringExtra(Category.CATEGORY_KEY));
 			client.Execute(RequestMethod.GET);
 			String response = client.getResponse();
 			Log.d("SHOP", response);
@@ -148,21 +153,22 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 	}
 
 	public static Bitmap getBitmapFromURL(String src) {
-	    try {
-	        Log.e("src",src);
-	        URL url = new URL(src);
-	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-	        connection.setDoInput(true);
-	        connection.connect();
-	        InputStream input = connection.getInputStream();
-	        Bitmap myBitmap = BitmapFactory.decodeStream(input);
-	        Log.e("Bitmap","returned");
-	        return myBitmap;
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	        Log.e("Exception",e.getMessage());
-	        return null;
-	    }
+		try {
+			Log.e("src", src);
+			URL url = new URL(src);
+			HttpURLConnection connection = (HttpURLConnection) url
+					.openConnection();
+			connection.setDoInput(true);
+			connection.connect();
+			InputStream input = connection.getInputStream();
+			Bitmap myBitmap = BitmapFactory.decodeStream(input);
+			Log.e("Bitmap", "returned");
+			return myBitmap;
+		} catch (IOException e) {
+			e.printStackTrace();
+			Log.e("Exception", e.getMessage());
+			return null;
+		}
 	}
 
 	@Override
@@ -205,6 +211,7 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 
 	@Override
 	public void surfaceCreated(SurfaceHolder arg0) {
+<<<<<<< HEAD
 		//camera = Camera.open();
 		String cameraType = getIntent().getStringExtra(Category.CATEGORY_KEY);
 		if("front".equals(cameraTypeMapping.get(cameraType))){
@@ -212,6 +219,10 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 		} else {
 			openCamera(Camera.CameraInfo.CAMERA_FACING_BACK);
 		}
+=======
+		// TODO: open frontcam for shades and backcam for shoes and watches
+		camera = Camera.open();
+>>>>>>> Temp changes
 	}
 	
 	public void openCamera(int cameraType){
@@ -240,46 +251,55 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 
 	@Override
 	public void onClick(View view) {
-		switch(view.getId()){
+		switch (view.getId()) {
 		case R.id.previous:
-			if(jsonArray != null){
-				if(currentProductIndex > 0){
+			if (jsonArray != null) {
+				if (currentProductIndex > 0) {
 					currentProductIndex -= 1;
 					displayProduct();
 				}
 			}
 			break;
 		case R.id.next:
-			if(jsonArray != null){
-				if(currentProductIndex < (jsonArray.length() - 1)){
+			if (jsonArray != null) {
+				if (currentProductIndex < (jsonArray.length() - 1)) {
 					currentProductIndex += 1;
 					displayProduct();
 				}
 			}
 			break;
-			
+
 		case R.id.add_to_cart:
-		if(jsonArray != null){
-			if(currentProductIndex < (jsonArray.length() - 1)){
-				currentProductIndex += 1;
-				displayProduct();
+			if (jsonArray != null) {
+				if (currentProductIndex < (jsonArray.length() - 1)) {
+					currentProductIndex += 1;
+					displayProduct();
+				} else if (currentProductIndex > 0) {
+					currentProductIndex -= 1;
+					displayProduct();
+				}
+				try {
+					if (fkApp.productTitles.contains(((JSONObject) jsonArray
+							.get(currentProductIndex)).getString("title")) == false) {
+						fkApp.productUrls.add(((JSONObject) jsonArray
+								.get(currentProductIndex)).getString("url"));
+						fkApp.productPrices.add(((JSONObject) jsonArray
+								.get(currentProductIndex)).getString("price"));
+						fkApp.productTitles.add(((JSONObject) jsonArray
+								.get(currentProductIndex)).getString("title"));
+						Log.d("Product count", fkApp.productUrls.size() + "");
+					}
+
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-			else if(currentProductIndex > 0){
-				currentProductIndex -= 1;
-				displayProduct();
-			}
-			try {
-				
-				fkApp.productUrls.add(((JSONObject)jsonArray.get(currentProductIndex)).getString("url"));
-				fkApp.productPrices.add(((JSONObject)jsonArray.get(currentProductIndex)).getString("price"));
-				fkApp.productTitles.add(((JSONObject)jsonArray.get(currentProductIndex)).getString("title"));
-				Log.d("Product count", fkApp.productUrls.size()+"");
-				
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+			break;
+			
+		case R.id.checkout:
+			
+
 		}
 	}
 }
