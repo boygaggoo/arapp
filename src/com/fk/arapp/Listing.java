@@ -84,7 +84,6 @@ public class Listing extends Activity implements SurfaceHolder.Callback,
 		this.addContentView(viewControl, layoutParamsControl);
 		bindNavButtons();
 	}
-<<<<<<< HEAD
 	
 	private void initializeCameraTypeMapping() {
 		this.cameraTypeMapping.put(Category.CAT_WATCHES, "back");
@@ -92,8 +91,6 @@ public class Listing extends Activity implements SurfaceHolder.Callback,
 		this.cameraTypeMapping.put(Category.CAT_SHOES, "back");
 		this.cameraTypeMapping.put(Category.CAT_JEWELRY, "front");
 	}
-=======
->>>>>>> Temp changes
 
 	private void bindNavButtons() {
 		View prevBtn = findViewById(R.id.previous);
