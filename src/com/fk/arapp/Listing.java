@@ -5,7 +5,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,13 +46,14 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 	private JSONArray jsonArray;
 	private Integer currentProductIndex;
 	FkApp fkApp;
+	Map<String, String> cameraTypeMapping = new HashMap<String,String>();
 	
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listing_main);
-		
+		initializeCameraTypeMapping();
 		fkApp = (FkApp) getApplicationContext();
 		
 		
@@ -79,6 +82,13 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 		bindNavButtons();
 	}
 	
+	private void initializeCameraTypeMapping() {
+		this.cameraTypeMapping.put(Category.CAT_WATCHES, "back");
+		this.cameraTypeMapping.put(Category.CAT_SHADES, "front");
+		this.cameraTypeMapping.put(Category.CAT_SHOES, "back");
+		this.cameraTypeMapping.put(Category.CAT_JEWELRY, "front");
+	}
+
 	private void bindNavButtons() {
 		View prevBtn = findViewById(R.id.previous);
 		prevBtn.setOnClickListener(this);
@@ -195,10 +205,31 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 
 	@Override
 	public void surfaceCreated(SurfaceHolder arg0) {
-		//TODO:  open frontcam for shades and backcam for shoes and watches
-		camera = Camera.open();
+		//camera = Camera.open();
+		String cameraType = getIntent().getStringExtra(Category.CATEGORY_KEY);
+		if("front".equals(cameraTypeMapping.get(cameraType))){
+			openCamera(Camera.CameraInfo.CAMERA_FACING_FRONT);
+		} else {
+			openCamera(Camera.CameraInfo.CAMERA_FACING_BACK);
+		}
 	}
-
+	
+	public void openCamera(int cameraType){
+	    int cameraCount = 0;
+	    Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+	    cameraCount = Camera.getNumberOfCameras();
+	    for (int camIdx = 0; camIdx < cameraCount; camIdx++) {
+	        Camera.getCameraInfo(camIdx, cameraInfo);
+	        if (cameraInfo.facing == cameraType) {
+	            try {
+	                this.camera = Camera.open(camIdx);
+	            } catch (RuntimeException e) {
+	                Log.e("FlipAR", "Camera failed to open: " + e.getLocalizedMessage());
+	            }
+	        }
+	    }
+	}
+	
 	@Override
 	public void surfaceDestroyed(SurfaceHolder arg0) {
 		camera.stopPreview();
