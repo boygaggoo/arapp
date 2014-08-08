@@ -104,14 +104,22 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 	private void displayProduct() {
 		if(jsonArray != null){
 			try {
-				String firstImageUrl = ((JSONObject)jsonArray.get(currentProductIndex)).getString("url");
+				String imageUrl = ((JSONObject)jsonArray.get(currentProductIndex)).getString("url");
 				ImageView imageView = (ImageView) findViewById(R.id.viewfinder_view);
-				imageView.setImageBitmap(getBitmapFromURL(firstImageUrl));
+				imageView.setImageBitmap(getImage(imageUrl));
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+	}
+
+	private Bitmap getImage(String url) {
+		if(!fkApp.cachedImagesByUrl.containsKey(url)){
+			Bitmap bitmap = getBitmapFromURL(url);
+			fkApp.cachedImagesByUrl.put(url, bitmap);
+    	}
+		return fkApp.cachedImagesByUrl.get(url);
 	}
 
 	private void loadProducts() {

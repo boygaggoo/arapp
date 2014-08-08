@@ -7,7 +7,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <!-- app labels -->
-    <string name="arapp_title">ShopAR</string>
+    <string name="arapp_title">FlipAR</string>
     <string name="add_to_cart_label">Add to Cart</string>
     <string name="add_to_wishlist_label">Add to WishList</string>
     <string name="next">Next</string>
