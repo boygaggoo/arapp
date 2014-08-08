@@ -100,8 +100,6 @@ public class Listing extends Activity implements SurfaceHolder.Callback {
 		}
 	}
 
-
-
 	private void loadProducts() {
 		try {
 			RestClient client = new RestClient(
