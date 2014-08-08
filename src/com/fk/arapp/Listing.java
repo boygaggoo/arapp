@@ -49,8 +49,8 @@ public class Listing extends Activity implements SurfaceHolder.Callback,
 	private Integer currentProductIndex;
 	FkApp fkApp;
 
-	Map<String, String> cameraTypeMapping = new HashMap<String,String>();
-	
+	Map<String, String> cameraTypeMapping = new HashMap<String, String>();
+
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +84,7 @@ public class Listing extends Activity implements SurfaceHolder.Callback,
 		this.addContentView(viewControl, layoutParamsControl);
 		bindNavButtons();
 	}
-	
+
 	private void initializeCameraTypeMapping() {
 		this.cameraTypeMapping.put(Category.CAT_WATCHES, "back");
 		this.cameraTypeMapping.put(Category.CAT_SHADES, "front");
@@ -106,7 +106,7 @@ public class Listing extends Activity implements SurfaceHolder.Callback,
 	@Override
 	protected void onResume() {
 		super.onResume();
-		loadProducts();
+		loadProductsFromCache();
 		currentProductIndex = 0;
 		Log.d("SHOPCUR", currentProductIndex.toString());
 		displayProduct();
@@ -116,7 +116,8 @@ public class Listing extends Activity implements SurfaceHolder.Callback,
 		if (jsonArray != null) {
 			try {
 
-				String imageUrl = ((JSONObject)jsonArray.get(currentProductIndex)).getString("url");
+				String imageUrl = ((JSONObject) jsonArray
+						.get(currentProductIndex)).getString("url");
 				ImageView imageView = (ImageView) findViewById(R.id.viewfinder_view);
 				imageView.setImageBitmap(getImage(imageUrl));
 			} catch (JSONException e) {
@@ -127,11 +128,20 @@ public class Listing extends Activity implements SurfaceHolder.Callback,
 	}
 
 	private Bitmap getImage(String url) {
-		if(!fkApp.cachedImagesByUrl.containsKey(url)){
+		if (!fkApp.cachedImagesByUrl.containsKey(url)) {
 			Bitmap bitmap = getBitmapFromURL(url);
 			fkApp.cachedImagesByUrl.put(url, bitmap);
-    	}
+		}
 		return fkApp.cachedImagesByUrl.get(url);
+	}
+
+	private void loadProductsFromCache() {
+		String category = getIntent().getStringExtra(Category.CATEGORY_KEY);
+		if (!fkApp.cachedJsonByCategory.containsKey(category)) {
+			loadProducts();
+			fkApp.cachedJsonByCategory.put(category, jsonArray);
+		}
+		jsonArray = fkApp.cachedJsonByCategory.get(category);
 	}
 
 	private void loadProducts() {
@@ -209,31 +219,32 @@ public class Listing extends Activity implements SurfaceHolder.Callback,
 
 	@Override
 	public void surfaceCreated(SurfaceHolder arg0) {
-		//camera = Camera.open();
+		// camera = Camera.open();
 		String cameraType = getIntent().getStringExtra(Category.CATEGORY_KEY);
-		if("front".equals(cameraTypeMapping.get(cameraType))){
+		if ("front".equals(cameraTypeMapping.get(cameraType))) {
 			openCamera(Camera.CameraInfo.CAMERA_FACING_FRONT);
 		} else {
 			openCamera(Camera.CameraInfo.CAMERA_FACING_BACK);
 		}
 	}
-	
-	public void openCamera(int cameraType){
-	    int cameraCount = 0;
-	    Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
-	    cameraCount = Camera.getNumberOfCameras();
-	    for (int camIdx = 0; camIdx < cameraCount; camIdx++) {
-	        Camera.getCameraInfo(camIdx, cameraInfo);
-	        if (cameraInfo.facing == cameraType) {
-	            try {
-	                this.camera = Camera.open(camIdx);
-	            } catch (RuntimeException e) {
-	                Log.e("FlipAR", "Camera failed to open: " + e.getLocalizedMessage());
-	            }
-	        }
-	    }
+
+	public void openCamera(int cameraType) {
+		int cameraCount = 0;
+		Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+		cameraCount = Camera.getNumberOfCameras();
+		for (int camIdx = 0; camIdx < cameraCount; camIdx++) {
+			Camera.getCameraInfo(camIdx, cameraInfo);
+			if (cameraInfo.facing == cameraType) {
+				try {
+					this.camera = Camera.open(camIdx);
+				} catch (RuntimeException e) {
+					Log.e("FlipAR",
+							"Camera failed to open: " + e.getLocalizedMessage());
+				}
+			}
+		}
 	}
-	
+
 	@Override
 	public void surfaceDestroyed(SurfaceHolder arg0) {
 		camera.stopPreview();
@@ -289,7 +300,7 @@ public class Listing extends Activity implements SurfaceHolder.Callback,
 				}
 			}
 			break;
-			
+
 		case R.id.checkout:
 			Intent intent = new Intent(this, Checkout.class);
 			startActivity(intent);
