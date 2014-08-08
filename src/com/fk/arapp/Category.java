@@ -6,9 +6,9 @@ import android.os.Bundle;
 public class Category extends Activity {
 	
 	public static final String CATEGORY_KEY = "CATEGORY";
-	public static final String CAT_WATCHES = "WATCHES";
-	public static final String CAT_SHADES = "SHADES";
-	public static final String CAT_SHOES = "SHOES";
+	public static final String CAT_WATCHES = "watches";
+	public static final String CAT_SHADES = "shades";
+	public static final String CAT_SHOES = "shoes";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

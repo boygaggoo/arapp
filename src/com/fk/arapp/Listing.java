@@ -1,13 +1,22 @@
 package com.fk.arapp;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.fk.arapp.RestClient.RequestMethod;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -20,6 +29,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.os.StrictMode;
 
@@ -31,6 +41,8 @@ public class Listing extends Activity implements SurfaceHolder.Callback {
 	boolean previewing = false;
 	LayoutInflater controlInflater = null;
 	ArrayList<String> imageUrls = new ArrayList<String>();
+	private JSONArray jsonArray;
+	private Integer currentProductIndex;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -66,24 +78,62 @@ public class Listing extends Activity implements SurfaceHolder.Callback {
 	
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		RestClient client = new RestClient(
-				"http://sleepy-retreat-2061.herokuapp.com/products");
-		client.AddParam("category", "watches");
-
-		try {
-			client.Execute(RequestMethod.GET);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		String response = client.getResponse();
-
-		
+		loadProducts();
+		currentProductIndex = 1;
+		Log.d("SHOPCUR", currentProductIndex.toString());
+		displayProduct();
 	}
 
 
+
+	private void displayProduct() {
+		if(jsonArray != null){
+			try {
+				String firstImageUrl = ((JSONObject)jsonArray.get(currentProductIndex)).getString("url");
+				ImageView imageView = (ImageView) findViewById(R.id.viewfinder_view);
+				imageView.setImageBitmap(getBitmapFromURL(firstImageUrl));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+
+
+	private void loadProducts() {
+		try {
+			RestClient client = new RestClient(
+					"http://sleepy-retreat-2061.herokuapp.com/products");
+			client.AddParam("category", getIntent().getStringExtra(Category.CATEGORY_KEY));
+			client.Execute(RequestMethod.GET);
+			String response = client.getResponse();
+			Log.d("SHOP", response);
+			jsonArray = new JSONArray(response);
+			Log.d("SHOPJSON", jsonArray.get(0).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static Bitmap getBitmapFromURL(String src) {
+	    try {
+	        Log.e("src",src);
+	        URL url = new URL(src);
+	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	        connection.setDoInput(true);
+	        connection.connect();
+	        InputStream input = connection.getInputStream();
+	        Bitmap myBitmap = BitmapFactory.decodeStream(input);
+	        Log.e("Bitmap","returned");
+	        return myBitmap;
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        Log.e("Exception",e.getMessage());
+	        return null;
+	    }
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

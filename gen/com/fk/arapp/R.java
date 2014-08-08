@@ -27,19 +27,25 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int bg1=0x7f020000;
+        public static final int fk=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int watches=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f090009;
-        public static final int add_to_cart=0x7f090006;
-        public static final int add_to_cart_button=0x7f090003;
-        public static final int add_to_wishlist=0x7f090007;
-        public static final int add_to_wishlist_button=0x7f090004;
-        public static final int camerapreview=0x7f090008;
-        public static final int cat_shades_button=0x7f090001;
-        public static final int cat_shoes_button=0x7f090002;
-        public static final int cat_watches_button=0x7f090000;
-        public static final int viewfinder_view=0x7f090005;
+        public static final int action_settings=0x7f09000c;
+        public static final int add_to_cart=0x7f090009;
+        public static final int add_to_cart_button=0x7f090004;
+        public static final int add_to_wishlist=0x7f09000a;
+        public static final int add_to_wishlist_button=0x7f090005;
+        public static final int camerapreview=0x7f09000b;
+        public static final int cat_shades_button=0x7f090002;
+        public static final int cat_shoes_button=0x7f090003;
+        public static final int cat_watches_button=0x7f090001;
+        public static final int imageView1=0x7f090000;
+        public static final int next=0x7f090007;
+        public static final int previous=0x7f090008;
+        public static final int viewfinder_view=0x7f090006;
     }
     public static final class layout {
         public static final int activity_home=0x7f030000;
@@ -58,14 +64,16 @@ public final class R {
         /**  app labels 
          */
         public static final int arapp_title=0x7f050005;
-        public static final int cat_shades_label=0x7f050009;
-        public static final int cat_shoes_label=0x7f05000a;
+        public static final int cat_shades_label=0x7f05000b;
+        public static final int cat_shoes_label=0x7f05000c;
         /**  categories 
          */
-        public static final int cat_watches_label=0x7f050008;
+        public static final int cat_watches_label=0x7f05000a;
         public static final int catalog_name=0x7f050001;
         public static final int hello_world=0x7f050003;
         public static final int listing_name=0x7f050002;
+        public static final int next=0x7f050008;
+        public static final int previous=0x7f050009;
     }
     public static final class style {
         /** 
