@@ -17,28 +17,36 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Checkout extends ListActivity{
+public class Checkout extends ListActivity {
 
 	CustomAdapter mAdapter; // Custom Adapter
 	ArrayList<Data> mList;
-	
+	FkApp fkApp;
+
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+
 	}
 
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+
+		for (int i = 0; i < fkApp.productUrls.size(); i++) {
+			mList.add(new Data(fkApp.productTitles.get(i), fkApp.productPrices.get(i), fkApp.productUrls.get(i)));
+		}
+		mAdapter.notifyDataSetChanged();
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
+		fkApp = (FkApp) getApplicationContext();
+
 		setContentView(R.layout.list);
 		mList = new ArrayList<Data>();
 
@@ -47,7 +55,7 @@ public class Checkout extends ListActivity{
 				R.layout.single_item, mList);
 		setListAdapter(mAdapter);
 	}
-	
+
 	private class CustomAdapter extends ArrayAdapter<Data> {
 
 		ArrayList<Data> items;
@@ -58,11 +66,11 @@ public class Checkout extends ListActivity{
 			this.items = (ArrayList<Data>) objects;
 		}
 
-		/* 
+		/*
 		 * function for getting the view and binding the data to items
 		 */
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) { 
+		public View getView(int position, View convertView, ViewGroup parent) {
 			View view = convertView;
 			ViewHolder holder;
 			if (view == null) {
@@ -75,12 +83,12 @@ public class Checkout extends ListActivity{
 				holder.image = (ImageView) view.findViewById(R.id.image);
 				view.setTag(holder);
 			} else {
-				holder = (ViewHolder) view.getTag(); //getting the tag
+				holder = (ViewHolder) view.getTag(); // getting the tag
 			}
 
 			Data singleItem = items.get(position);
 
-			if (singleItem != null) {	//binding the values
+			if (singleItem != null) { // binding the values
 				holder.title.setText(singleItem.title);
 				holder.description.setText(singleItem.description);
 				holder.image.setImageBitmap(singleItem.bitMap);
@@ -89,31 +97,31 @@ public class Checkout extends ListActivity{
 			return view;
 		}
 
-		class ViewHolder { //creating a ViewHolder
+		class ViewHolder { // creating a ViewHolder
 			TextView title;
 			TextView description;
 			ImageView image;
 		}
 
 	}
-}
 
-class Data {
-	String title;
-	String description;
-	String url;
-	Bitmap bitMap = null;
+	class Data {
+		String title;
+		String description;
+		String url;
+		Bitmap bitMap = null;
 
-	/**
-	 * @param title
-	 * @param description
-	 * @param string
-	 * @param bitMap
-	 */
-	Data(String title, String description, String string, Bitmap bitMap) {
-		this.title = title;
-		this.description = description;
-		this.url = string;
-		this.bitMap = bitMap;
+		/**
+		 * @param title
+		 * @param description
+		 * @param string
+		 * @param bitMap
+		 */
+		Data(String title, String description, String string) {
+			this.title = title;
+			this.description = description;
+			this.url = string;
+			this.bitMap = fkApp.cachedImagesByUrl.get(url);
+		}
 	}
 }

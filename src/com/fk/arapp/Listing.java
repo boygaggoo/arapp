@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import com.fk.arapp.RestClient.RequestMethod;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -298,7 +299,9 @@ public class Listing extends Activity implements SurfaceHolder.Callback,
 			break;
 			
 		case R.id.checkout:
-			
+			Intent intent = new Intent(this, Checkout.class);
+			startActivity(intent);
+			break;
 
 		}
 	}
