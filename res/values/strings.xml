@@ -14,6 +14,8 @@
     <string name="product_image">Product Image</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="title">Title</string>
+    <string name="price">Price</string>
 	<!-- categories -->
 	<string name="cat_watches_label">Watches</string>
 	<string name="cat_shades_label">Shades</string>
