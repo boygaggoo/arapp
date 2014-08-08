@@ -33,7 +33,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.os.StrictMode;
 
-public class Listing extends Activity implements SurfaceHolder.Callback {
+public class Listing extends Activity implements SurfaceHolder.Callback, View.OnClickListener {
 
 	Camera camera;
 	SurfaceView surfaceView;
@@ -71,11 +71,18 @@ public class Listing extends Activity implements SurfaceHolder.Callback {
 		LayoutParams layoutParamsControl = new LayoutParams(
 				LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 		this.addContentView(viewControl, layoutParamsControl);
-
+		bindNavButtons();
+	}
+	
+	private void bindNavButtons() {
+		View prevBtn = findViewById(R.id.previous);
+		prevBtn.setOnClickListener(this);
+		View nextBtn = findViewById(R.id.next);
+		nextBtn.setOnClickListener(this);
 	}
 
-	
-	
+
+
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -183,5 +190,27 @@ public class Listing extends Activity implements SurfaceHolder.Callback {
 		camera.release();
 		camera = null;
 		previewing = false;
+	}
+
+	@Override
+	public void onClick(View view) {
+		switch(view.getId()){
+		case R.id.previous:
+			if(jsonArray != null){
+				if(currentProductIndex > 0){
+					currentProductIndex -= 1;
+					displayProduct();
+				}
+			}
+			break;
+		case R.id.next:
+			if(jsonArray != null){
+				if(currentProductIndex < (jsonArray.length() - 1)){
+					currentProductIndex += 1;
+					displayProduct();
+				}
+			}
+			break;
+		}
 	}
 }
