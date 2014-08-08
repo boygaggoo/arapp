@@ -18,6 +18,7 @@ import com.fk.arapp.RestClient.RequestMethod;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.LabeledIntent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
@@ -33,6 +34,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.os.StrictMode;
 
@@ -119,6 +121,14 @@ public class Listing extends Activity implements SurfaceHolder.Callback,
 				String imageUrl = ((JSONObject)jsonArray.get(currentProductIndex)).getString("url");
 				ImageView imageView = (ImageView) findViewById(R.id.viewfinder_view);
 				imageView.setImageBitmap(getImage(imageUrl));
+				
+				TextView title = (TextView)findViewById(R.id.title);
+				title.setText("Title: "+((JSONObject)jsonArray.get(currentProductIndex)).getString("title"));
+				
+				TextView price = (TextView)findViewById(R.id.price);
+				price.setText("Price: "+((JSONObject)jsonArray.get(currentProductIndex)).getString("price"));
+				
+				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
