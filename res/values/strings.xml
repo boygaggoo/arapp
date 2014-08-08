@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">FlipAR</string>
+    <string name="app_name">arapp</string>
     <string name="catalog_name">Catalog</string>
     <string name="listing_name">Listing</string>
     <string name="hello_world">Hello world!</string>
@@ -21,7 +21,6 @@
 	<string name="cat_shades_label">Shades</string>
 	<string name="cat_shoes_label">Shoes</string>
 	<string name="cat_jewelry_label">Jewelry</string>
-	<string name="cat_tshirt_label">TShirts</string>
 	<!-- colors -->
     <color name="background">#3500ffff</color>
 </resources>
