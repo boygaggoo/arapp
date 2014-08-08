@@ -10,6 +10,7 @@ public class Category extends Activity {
 	public static final String CAT_SHADES = "shades";
 	public static final String CAT_SHOES = "shoes";
 	public static final String CAT_JEWELRY = "jewelry";
+	public static final String CAT_TSHIRT = "tshirt";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

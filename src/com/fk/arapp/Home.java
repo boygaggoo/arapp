@@ -27,6 +27,8 @@ public class Home extends Activity implements View.OnClickListener{
 		catBtn.setOnClickListener(this);
 		catBtn = findViewById(R.id.cat_jewelry_button);
 		catBtn.setOnClickListener(this);
+		catBtn = findViewById(R.id.cat_tshirt_button);
+		catBtn.setOnClickListener(this);
 	}
 
 
@@ -64,6 +66,9 @@ public class Home extends Activity implements View.OnClickListener{
 			break;
 		case R.id.cat_jewelry_button:
 			openCategory(Category.CAT_JEWELRY);
+			break;
+		case R.id.cat_tshirt_button:
+			openCategory(Category.CAT_TSHIRT);
 			break;
 		}
 	}
