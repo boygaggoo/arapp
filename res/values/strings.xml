@@ -18,6 +18,7 @@
 	<string name="cat_watches_label">Watches</string>
 	<string name="cat_shades_label">Shades</string>
 	<string name="cat_shoes_label">Shoes</string>
+	<string name="cat_jewelry_label">Jewelry</string>
 	<!-- colors -->
     <color name="background">#3500ffff</color>
 </resources>

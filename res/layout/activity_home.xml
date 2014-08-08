@@ -43,5 +43,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
        	android:text="@string/cat_shoes_label"/>
-
+    <Button
+        android:id="@+id/cat_jewelry_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+       	android:text="@string/cat_jewelry_label"/>
+    
 </LinearLayout>
