@@ -43,12 +43,17 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 	ArrayList<String> imageUrls = new ArrayList<String>();
 	private JSONArray jsonArray;
 	private Integer currentProductIndex;
-
+	FkApp fkApp;
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listing_main);
+		
+		fkApp = (FkApp) getApplicationContext();
+		
+		
 
 		if (android.os.Build.VERSION.SDK_INT > 9) {
 			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -79,6 +84,8 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 		prevBtn.setOnClickListener(this);
 		View nextBtn = findViewById(R.id.next);
 		nextBtn.setOnClickListener(this);
+		View addToCartBtn = findViewById(R.id.add_to_cart);
+		addToCartBtn.setOnClickListener(this);
 	}
 
 
@@ -211,6 +218,29 @@ public class Listing extends Activity implements SurfaceHolder.Callback, View.On
 				}
 			}
 			break;
+			
+		case R.id.add_to_cart:
+		if(jsonArray != null){
+			if(currentProductIndex < (jsonArray.length() - 1)){
+				currentProductIndex += 1;
+				displayProduct();
+			}
+			else if(currentProductIndex > 0){
+				currentProductIndex -= 1;
+				displayProduct();
+			}
+			try {
+				
+				fkApp.productUrls.add(((JSONObject)jsonArray.get(currentProductIndex)).getString("url"));
+				fkApp.productPrices.add(((JSONObject)jsonArray.get(currentProductIndex)).getString("price"));
+				fkApp.productTitles.add(((JSONObject)jsonArray.get(currentProductIndex)).getString("title"));
+				Log.d("Product count", fkApp.productUrls.size()+"");
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		}
 	}
 }
