@@ -80,7 +80,7 @@ public class Listing extends Activity implements SurfaceHolder.Callback {
 	protected void onResume() {
 		super.onResume();
 		loadProducts();
-		currentProductIndex = 1;
+		currentProductIndex = 0;
 		Log.d("SHOPCUR", currentProductIndex.toString());
 		displayProduct();
 	}
@@ -173,6 +173,7 @@ public class Listing extends Activity implements SurfaceHolder.Callback {
 
 	@Override
 	public void surfaceCreated(SurfaceHolder arg0) {
+		//TODO:  open frontcam for shades and backcam for shoes and watches
 		camera = Camera.open();
 	}
 

@@ -44,8 +44,8 @@ public final class R {
         public static final int cat_watches_button=0x7f090001;
         public static final int imageView1=0x7f090000;
         public static final int next=0x7f090007;
-        public static final int previous=0x7f090008;
-        public static final int viewfinder_view=0x7f090006;
+        public static final int previous=0x7f090006;
+        public static final int viewfinder_view=0x7f090008;
     }
     public static final class layout {
         public static final int activity_home=0x7f030000;

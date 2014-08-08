@@ -1,41 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
- android:orientation="vertical"
- android:layout_width="fill_parent"
- android:layout_height="fill_parent"
- android:gravity="center"
- >
- <ImageView
-      android:id="@+id/viewfinder_view"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:src="@drawable/watches"/>
-<Button
-android:id="@+id/next"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="@string/next"
-android:layout_gravity="bottom"
-/>
-<Button
-android:id="@+id/previous"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="@string/previous"
-android:layout_gravity="bottom"
-/> 
-<Button
-android:id="@+id/add_to_cart"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="@string/add_to_cart_label"
-android:layout_gravity="bottom"
-/>
-<Button
-android:id="@+id/add_to_wishlist"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="@string/add_to_wishlist_label"
-android:layout_gravity="bottom"
-/>
-</LinearLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/previous" />
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/next" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/viewfinder_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/watches"
+        android:layout_centerInParent="true" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/add_to_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/add_to_cart_label" />
+
+        <Button
+            android:id="@+id/add_to_wishlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/add_to_wishlist_label" />
+    </LinearLayout>
+
+</RelativeLayout>

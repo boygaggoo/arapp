@@ -10,8 +10,8 @@
     <string name="arapp_title">ShopAR</string>
     <string name="add_to_cart_label">Add to Cart</string>
     <string name="add_to_wishlist_label">Add to WishList</string>
-    <string name="next">Next Image</string>
-    <string name="previous">Previous Image</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 	<!-- categories -->
 	<string name="cat_watches_label">Watches</string>
 	<string name="cat_shades_label">Shades</string>
