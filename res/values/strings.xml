@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">arapp</string>
+    <string name="app_name">FlipAR</string>
     <string name="catalog_name">Catalog</string>
     <string name="listing_name">Listing</string>
     <string name="hello_world">Hello world!</string>
